@@ -16,7 +16,7 @@
               </div>
             </TransitionChild>
             <div class="flex-shrink-0 flex items-center px-4">
-              <h1 class="text-2xl font-bold">Settlement</h1>
+          <h1 class="text-2xl font-bold">Settlement</h1>
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
               <nav class="px-2">
@@ -40,7 +40,7 @@
     <div class="hidden lg:flex lg:flex-shrink-0">
       <div class="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-gray-100">
         <div class="flex items-center flex-shrink-0 px-6">
-              <h1 class="text-2xl font-bold">Settlement</h1>
+          <h1 class="text-2xl font-bold">Settlement</h1>
         </div>
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="h-0 flex-1 flex flex-col overflow-y-auto">
@@ -152,71 +152,29 @@
         </div>
       </div>
       <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-        <!-- Page title & actions -->
+        <!-- Page loanee & actions -->
         <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <div class="flex-1 min-w-0">
             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-              Dashboard
+              Sila Payments
             </h1>
           </div>
         </div>
-        <!-- Pinned projects -->
-        <div class="px-4 mt-6 sm:px-6 lg:px-8">
-          <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Widgets</h2>
-          <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-3">
-            <li v-for="project in pinnedProjects" :key="project.id" class="relative col-span-1 flex shadow-sm rounded-md">
-              <div :class="[project.bgColorClass, 'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md']">
-                {{ project.initials }}
-              </div>
-              <div class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
-                <div class="flex-1 px-4 py-2 text-sm truncate">
-                  <a href="#" class="text-gray-900 font-medium hover:text-gray-600">
-                    {{ project.title }}
-                  </a>
-                  <p class="text-gray-500">{{ project.totalMembers }} Members</p>
-                </div>
-                <Menu as="div" class="flex-shrink-0 pr-2">
-                  <MenuButton class="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    <span class="sr-only">Open options</span>
-                    <DotsVerticalIcon class="w-5 h-5" aria-hidden="true" />
-                  </MenuButton>
-                  <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                    <MenuItems class="z-10 mx-3 origin-top-right absolute right-10 top-3 w-48 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
-                      <div class="py-1">
-                        <MenuItem v-slot="{ active }">
-                          <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">View</a>
-                        </MenuItem>
-                      </div>
-                      <div class="py-1">
-                        <MenuItem v-slot="{ active }">
-                          <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Removed from pinned</a>
-                        </MenuItem>
-                        <MenuItem v-slot="{ active }">
-                          <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Share</a>
-                        </MenuItem>
-                      </div>
-                    </MenuItems>
-                  </transition>
-                </Menu>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Projects list (only on smallest breakpoint) -->
+        <!-- settled payments -->
+        <!-- payments list (only on smallest breakpoint) -->
         <div class="mt-10 sm:hidden">
           <div class="px-4 sm:px-6">
-            <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Projects</h2>
+            <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">payments</h2>
           </div>
           <ul class="mt-3 border-t border-gray-200 divide-y divide-gray-100">
-            <li v-for="project in projects" :key="project.id">
+            <li v-for="payment in payments" :key="payment.id">
               <a href="#" class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6">
                 <span class="flex items-center truncate space-x-3">
-                  <span :class="[project.bgColorClass, 'w-2.5 h-2.5 flex-shrink-0 rounded-full']" aria-hidden="true" />
+                  <span :class="[payment.bgColorClass, 'w-2.5 h-2.5 flex-shrink-0 rounded-full']" aria-hidden="true" />
                   <span class="font-medium truncate text-sm leading-6">
-                    {{ project.title }}
+                    {{ payment.loanee }}
                     {{ ' ' }}
-                    <span class="truncate font-normal text-gray-500">in {{ project.team }}</span>
+                    <span class="truncate font-normal text-gray-500">in {{ payment.amount }}</span>
                   </span>
                 </span>
                 <ChevronRightIcon class="ml-4 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
@@ -225,48 +183,63 @@
           </ul>
         </div>
 
-        <!-- Projects table (small breakpoint and up) -->
+        <!-- payments table (small breakpoint and up) -->
         <div class="hidden mt-8 sm:block">
           <div class="align-middle inline-block min-w-full border-b border-gray-200">
             <table class="min-w-full">
               <thead>
                 <tr class="border-t border-gray-200">
                   <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <span class="lg:pl-2">Project</span>
+                    <span class="lg:pl-2">Payment ID</span>
                   </th>
                   <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Members
+                    Loanee
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Loan ID
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Amount
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Period
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
                   </th>
                   <th class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Last updated
+                    Date of Payment
                   </th>
                   <th class="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider" />
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-100">
-                <tr v-for="project in projects" :key="project.id">
-                  <td class="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
-                    <div class="flex items-center space-x-3 lg:pl-2">
-                      <div :class="[project.bgColorClass, 'flex-shrink-0 w-2.5 h-2.5 rounded-full']" aria-hidden="true" />
-                      <a href="#" class="truncate hover:text-gray-600">
-                        <span>
-                          {{ project.title }}
-                          {{ ' ' }}
-                          <span class="text-gray-500 font-normal">in {{ project.team }}</span>
-                        </span>
-                      </a>
-                    </div>
-                  </td>
-                  <td class="px-6 py-3 text-sm text-gray-500 font-medium">
-                    <div class="flex items-center space-x-2">
-                      <div class="flex flex-shrink-0 -space-x-1">
-                        <img v-for="member in project.members" :key="member.handle" class="max-w-none h-6 w-6 rounded-full ring-2 ring-white" :src="member.imageUrl" :alt="member.name" />
-                      </div>
-                      <span v-if="project.totalMembers > project.members.length" class="flex-shrink-0 text-xs leading-5 font-medium">+{{ project.totalMembers - project.members.length }}</span>
-                    </div>
+                <tr v-for="payment in payments" :key="payment.id">
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    {{ payment.id }}
                   </td>
                   <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-                    {{ project.lastUpdated }}
+                    {{ payment.loanee }}
+                  </td>
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    {{ payment.loan_id }}
+                  </td>
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    {{ payment.amount }}
+                  </td>
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    {{ payment.period }}
+                  </td>
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    <span v-if="payment.settled" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      SETTLED
+                    </span>
+                    <span v-else class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                      NOT YET SETTLED
+                    </span>
+                  </td>
+                  <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                    {{ payment.payment_date }}
                   </td>
                   <td class="pr-6">
                     <Menu as="div" class="relative flex justify-end items-center">
@@ -280,10 +253,10 @@
                             <MenuItem v-slot="{ active }">
                               <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'group flex items-center px-4 py-2 text-sm']">
                                 <PencilAltIcon class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                                Edit
+                                View
                               </a>
                             </MenuItem>
-                            <MenuItem v-slot="{ active }">
+                            <!-- <MenuItem v-slot="{ active }">
                               <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'group flex items-center px-4 py-2 text-sm']">
                                 <DuplicateIcon class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                                 Duplicate
@@ -294,7 +267,7 @@
                                 <UserAddIcon class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                                 Share
                               </a>
-                            </MenuItem>
+                            </MenuItem> -->
                           </div>
                           <div class="py-1">
                             <MenuItem v-slot="{ active }">
@@ -343,164 +316,60 @@ import {
 } from '@heroicons/vue/solid'
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
   { name: 'Loanees', href: '/loanees', icon: UsersIcon, current: false },
-  { name: 'Payments', href: '/payments', icon: CurrencyDollarIcon, current: false },
+  { name: 'Payments', href: '/payments', icon: CurrencyDollarIcon, current: true },
   { name: 'Terminals', href: '/terminals', icon: CreditCardIcon, current: false },
 ]
-// const teams = [
+// const amounts = [
 //   { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
 //   { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
 //   { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
 // ]
-const projects = [
+const payments = [
   {
     id: 1,
-    title: 'Total Loanees',
-    initials: 'GA',
-    team: 'Engineering',
-    members: [
-      {
-        name: 'Dries Vincent',
-        handle: 'driesvincent',
-        imageUrl:
-          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Lindsay Walton',
-        handle: 'lindsaywalton',
-        imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Courtney Henry',
-        handle: 'courtneyhenry',
-        imageUrl:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Tom Cook',
-        handle: 'tomcook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-    totalMembers: 12,
-    lastUpdated: 'March 17, 2020',
-    pinned: true,
+    loanee: 'Total Loanees',
+    loan_id: 'GA',
+    amount: 'Engineering',
+    period: 12,
+    payment_date: 'March 17, 2020',
+    settled: true,
     bgColorClass: 'bg-pink-600',
   },
   {
     id: 1,
-    title: 'Monthly Payment Transactions',
-    initials: 'GA',
-    team: 'Engineering',
-    members: [
-      {
-        name: 'Dries Vincent',
-        handle: 'driesvincent',
-        imageUrl:
-          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Lindsay Walton',
-        handle: 'lindsaywalton',
-        imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Courtney Henry',
-        handle: 'courtneyhenry',
-        imageUrl:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Tom Cook',
-        handle: 'tomcook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-    totalMembers: 12,
-    lastUpdated: 'March 17, 2020',
-    pinned: true,
+    loanee: 'Monthly Payment Transactions',
+    loan_id: 'GA',
+    amount: 'Engineering',
+    period: 12,
+    payment_date: 'March 17, 2020',
+    settled: true,
     bgColorClass: 'bg-green-600',
   },
   {
     id: 1,
-    title: 'Total Terminals',
-    initials: 'GA',
-    team: 'Engineering',
-    members: [
-      {
-        name: 'Dries Vincent',
-        handle: 'driesvincent',
-        imageUrl:
-          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Lindsay Walton',
-        handle: 'lindsaywalton',
-        imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Courtney Henry',
-        handle: 'courtneyhenry',
-        imageUrl:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Tom Cook',
-        handle: 'tomcook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-    totalMembers: 12,
-    lastUpdated: 'March 17, 2020',
-    pinned: true,
+    loanee: 'Total Terminals',
+    loan_id: 'GA',
+    amount: 'Engineering',
+    period: 12,
+    payment_date: 'March 17, 2020',
+    settled: true,
     bgColorClass: 'bg-blue-600',
   },
   {
     id: 1,
-    title: 'Daily Total Payments',
-    initials: 'GA',
-    team: 'Engineering',
-    members: [
-      {
-        name: 'Dries Vincent',
-        handle: 'driesvincent',
-        imageUrl:
-          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Lindsay Walton',
-        handle: 'lindsaywalton',
-        imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Courtney Henry',
-        handle: 'courtneyhenry',
-        imageUrl:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-      {
-        name: 'Tom Cook',
-        handle: 'tomcook',
-        imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    ],
-    totalMembers: 12,
-    lastUpdated: 'March 17, 2020',
-    pinned: true,
+    loanee: 'Daily Total Payments',
+    loan_id: 'GA',
+    amount: 'Engineering',
+    period: 12,
+    payment_date: 'March 17, 2020',
+    settled: true,
     bgColorClass: 'bg-yellow-600',
   },
-  // More projects...
+  // More payments...
 ]
-const pinnedProjects = projects.filter((project) => project.pinned)
+const settledpayments = payments.filter((payment) => payment.settled)
 
 export default {
   components: {
@@ -528,9 +397,9 @@ export default {
 
     return {
       navigation,
-      // teams,
-      projects,
-      pinnedProjects,
+      // amounts,
+      payments,
+      settledpayments,
       sidebarOpen,
     }
   },
