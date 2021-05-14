@@ -486,6 +486,7 @@
                                 <MenuItem v-slot="{ active }">
                                   <a
                                     href="#"
+                                    @click="openModal(loanee)"
                                     :class="[
                                       active
                                         ? 'bg-gray-100 text-gray-900'
@@ -500,18 +501,6 @@
                                     View
                                   </a>
                                 </MenuItem>
-                                <!-- <MenuItem v-slot="{ active }">
-                              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'group flex items-center px-4 py-2 text-sm']">
-                                <DuplicateIcon class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                                Duplicate
-                              </a>
-                            </MenuItem>
-                            <MenuItem v-slot="{ active }">
-                              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'group flex items-center px-4 py-2 text-sm']">
-                                <UserAddIcon class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                                Share
-                              </a>
-                            </MenuItem> -->
                               </div>
                               <div class="py-1">
                                 <MenuItem v-slot="{ active }">
@@ -552,11 +541,13 @@
         </div>
       </main>
     </div>
+    <LoaneeModal :open="open" @close="closeModal" :loanee="loanee"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import LoaneeModal from "@/components/LoaneeModal"
 import { ref } from "vue";
 import {
   Dialog,
@@ -634,6 +625,7 @@ export default {
     UserAddIcon,
     XIcon,
     Pagination,
+    LoaneeModal
   },
   setup() {
     const sidebarOpen = ref(false);
@@ -648,6 +640,8 @@ export default {
   data() {
     return {
       loanees: {},
+      loanee: {},
+      open: false,
     };
   },
   methods: {
@@ -657,6 +651,13 @@ export default {
         this.loanees = response.data.result;
       });
     },
+    openModal(info) {
+      this.open = true
+      this.loanee = info
+    },
+    closeModal() {
+      this.open = false
+    }
   },
   created() {
     this.getLoanees();
