@@ -20,7 +20,7 @@
         <p class="text-sm text-gray-700">
           Showing
           {{ ' ' }}
-          <span class="font-medium">1</span>
+          <span class="font-medium">{{ meta.length === 0 ? 0 : 1}}</span>
           {{ ' ' }}
           to
           {{ ' ' }}

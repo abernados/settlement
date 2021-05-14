@@ -565,7 +565,7 @@ import Pagination from "../components/Pagination.vue";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: false },
-  { name: "payments", href: "/payments", icon: UsersIcon, current: false },
+  { name: "Loanees", href: "/loanees", icon: UsersIcon, current: false },
   {
     name: "Payments",
     href: "/payments",
