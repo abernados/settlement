@@ -48,7 +48,7 @@
             {{ page }}
           </router-link>
           
-          <button v-if="isLastPage()" class="bg-white border border-gray-300 cursor-default font-medium inline-flex items-center px-2 py-2 relative rounded-l-md text-gray-200 text-sm" disabled>
+          <button v-if="isLastPage()" class="bg-white border border-gray-300 cursor-default font-medium inline-flex items-center px-2 py-2 relative rounded-r-md text-gray-200 text-sm" disabled>
             <span class="sr-only">Next</span>
             <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
           </button>
