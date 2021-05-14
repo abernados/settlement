@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <h1 class="font-extrabold text-4xl text-center text-cyan-600">FUNDERPRISE</h1>
+      <h1 class="font-extrabold text-4xl text-center text-cyan-600">SETTLEMENT</h1>
       <h2 class="font-extralight mt-6 text-center text-gray-900 text-xl">
         Sign in to your account
       </h2>
